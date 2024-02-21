@@ -19,6 +19,49 @@ public class InterpretDrawingFile {
 		chooser.showOpenDialog(null);
 		File f = new File(chooser.getSelectedFile().getPath());
 		Scanner in = new Scanner(f); //making Scanner with a File
+		String shapeType = in.next();
+		int redComponent = in.nextInt();
+		int greenComponent = in.nextInt();
+		int blueComponent = in.nextInt();
+		boolean isFilled = in.nextBoolean();
+		double parameterOne = in.nextDouble();
+		double parameterTwo = in.nextDouble();
+		double parameterThree = in.nextDouble();
+		double parameterFour = in.nextDouble();
 		
+		
+		StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+		
+		if (shapeType.equals ("rectangle")) {
+				StdDraw.rectangle(parameterOne, parameterTwo, parameterThree, parameterFour);
+			if (isFilled == true) {
+				StdDraw.filledRectangle(parameterOne, parameterTwo, parameterThree, parameterFour);
+			}
+			else {
+				StdDraw.rectangle(parameterOne, parameterTwo, parameterThree, parameterFour);
+			}
+		} 	
+		if (shapeType.equals ("ellipse")) {
+			StdDraw.ellipse(parameterOne, parameterTwo, parameterThree, parameterFour);
+			if (isFilled == true) {
+				StdDraw.filledEllipse(parameterOne, parameterTwo, parameterThree, parameterFour);
+		}
+			else {
+				StdDraw.ellipse(parameterOne, parameterTwo, parameterThree, parameterFour);
+			}
+		}
+		if (shapeType.equals ("triangle")) {
+			double parameterFive = in.nextDouble();
+			double parameterSix = in.nextDouble();
+			double[] triX = {parameterOne, parameterThree, parameterFive};
+			double[] triY = {parameterTwo, parameterFour, parameterSix};
+			StdDraw.polygon(triX, triY);
+			if (isFilled == true) {
+				StdDraw.filledPolygon(triX, triY);
+		}
+			else {
+				StdDraw.polygon(triX, triY);
+			}
+		}
 	}
 }
